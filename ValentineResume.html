@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume Review</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* ================= RESUME ================= */
+.resume {
+  max-width: 800px;
+  margin: auto;
+  padding: 60px 20px;
+  line-height: 1.6;
+}
+
+.resume h1 {
+  margin-bottom: 5px;
+}
+
+.resume h2 {
+  margin-top: 40px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 5px;
+}
+
+.continue-btn {
+  display: block;
+  margin: 60px auto;
+  padding: 14px 30px;
+  border: none;
+  background: #111827;
+  color: white;
+  border-radius: 999px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ================= STORY ================= */
+.story {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 30px;
+  background: linear-gradient(to bottom, #fff5f7, #ffffff);
+  text-align: center;
+}
+.errorCode {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #000000;
+}
+.errorMessage {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 10px;
+}
+.story.active {
+  display: flex;
+}
+
+.story-content {
+  max-width: 650px;
+}
+
+.story p {
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+/* ================= BUTTONS ================= */
+.buttons {
+  margin-top: 40px;
+}
+
+button {
+  padding: 14px 28px;
+  margin: 10px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.yes {
+  background: #ec4899;
+  color: white;
+}
+
+.maybe {
+  background: #e5e7eb;
+}
+
+/* ================= CONFETTI ================= */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= RESUME SECTION ================= -->
+<div class="resume" id="resumeSection">
+
+<h1>Juan Arredondo</h1>
+<p>Marketing & Lead Generation Specialist</p>
+
+<h2>Summary</h2>
+<p>
+Results-driven professional focused on digital marketing, SEO strategy,
+and lead generation systems. Passionate about building systems that
+create meaningful connections and long-term growth.
+</p>
+
+<h2>Skills</h2>
+<ul>
+  <li>SEO Strategy & Content Marketing</li>
+  <li>Lead Generation Funnel Design</li>
+  <li>Frontend Development (HTML, CSS, JavaScript)</li>
+  <li>CRM & Automation Systems</li>
+  <li>Creative Problem Solving</li>
+</ul>
+
+<h2>Experience</h2>
+<p>
+Built digital marketing systems focused on connecting people with the
+right solutions at the right time. Known for combining technical skill
+with thoughtful creativity.
+</p>
+
+<button class="continue-btn" onclick="startStory()">
+View Portfolio
+</button>
+
+</div>
+
+<!-- ================= STORY SCREENS ================= -->
+<div class="story" id="story1">
+  <div class="story-content">
+    <p>Redirecting to Porfolio! This might take a minute...</p>
+    <button onclick="nextStory('story2')">Continue</button>
+  </div>
+</div>
+
+<div class="story" id="story2">
+  <div class="story-content">
+    <p>
+      <span class="errorCode">404 PAGE NOT FOUND </span><br>
+      <span class="errorMessage">Oops! Something went wrong, An unexpected error occurred,Content removed or was not found. Please remind yourself, of how we met dancing at a social in april.</span>
+    </p>
+    <button onclick="nextStory('story3')">Reload Page</button>
+  </div>
+</div>
+
+<div class="story" id="story3">
+  <div class="story-content">
+    <p>
+      <span class="errorCode">404 PAGE NOT FOUND </span><br>
+      <span class="errorMessage">Oops! Something went wrong, An unexpected error occurred,Content removed or was not found. One pool party in May 28, changed everything!.</span>
+    </p>
+    <button onclick="nextStory('story4')">Reload Page</button>
+  </div>
+</div>
+
+<div class="story" id="story4">
+  <div class="story-content">
+    <p>
+      Those pages, aren't broken, they were just hiding important messages for you....<br><br>
+      Since <strong>June 28, 2025</strong>, you have become an amazing part of my life.<br><br>
+      There is one thing I want to ask you...
+    </p>
+    <button onclick="nextStory('story5')">Continue</button>
+  </div>
+</div>
+
+<div class="story" id="story5">
+  <div class="story-content">
+    <p>
+      <span class="errorCode">404 PAGE NOT FOUND </span><br>
+      <span class="errorMessage">Oops! Something went wrong, An unexpected error occurred,Content removed or was not found. This time the page is actually broken! Just like my heart if you say no.</span>
+    </p>
+    <button onclick="nextStory('story6')">Reload Page</button>
+  </div>
+</div>
+
+<div class="story" id="story6">
+  <div class="story-content">
+    <h2>Will you be my Valentine? ❤️</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="celebrate()">Yes</button>
+      <button class="maybe" onclick="needMinute()">I need a minute</button>
+    </div>
+
+    <p id="result" style="display:none; font-size:22px; margin-top:20px;"></p>
+  </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+function startStory() {
+  document.getElementById("resumeSection").style.display = "none";
+  document.getElementById("story1").classList.add("active");
+}
+
+function nextStory(nextId) {
+  document.querySelectorAll(".story").forEach(s => s.classList.remove("active"));
+  document.getElementById(nextId).classList.add("active");
+}
+
+function needMinute() {
+  const result = document.getElementById("result");
+  result.style.display = "block";
+  result.innerHTML = "That’s okay… I’ll wait 🙂";
+
+  setTimeout(() => {
+    result.innerHTML =
+      "I can't wait forever...<br><br><strong>Will you be my Valentine? ❤️</strong>";
+  }, 2000);
+}
+
+function celebrate() {
+  const result = document.getElementById("result");
+  result.style.display = "block";
+  result.innerHTML = "YAY!!!! I LOVE YOU BABY 💘";
+
+  for (let i = 0; i < 30; i++) {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "-20px";
+    heart.style.fontSize = "24px";
+    heart.style.animation = "fall 3s linear forwards";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
